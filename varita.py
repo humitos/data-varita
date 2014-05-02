@@ -40,8 +40,8 @@ if __name__ == '__main__':
             ro[5] = Decimal(row[3]) - B  # A1-B
             ro[6] = Decimal(row[4]) - B  # A2-B
             ro[7] = (ro[5] + ro[6]) / Decimal('2.0')  # A Promedio
-            ro[8] = (ro[7] - Decimal('2E-16')) / 11
-            ro[9] = (ro[8] * Decimal('2.2') * Decimal('20')) / (Decimal('0.05') * ro[0])
+            ro[8] = Decimal(str(round((ro[7] - Decimal('2E-16')) / 11, 3)))
+            ro[9] = round((ro[8] * Decimal('2.2') * Decimal('20')) / (Decimal('0.05') * ro[0]), 3)
             output.append(ro)
 
     with open('proteinas_analizado.csv', 'w') as fh:

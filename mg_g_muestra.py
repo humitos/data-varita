@@ -31,13 +31,13 @@ if __name__ == '__main__':
             ro1 = [0] * 4
             ro1[0] = rows[0][1]  # Dia
             ro1[1] = rows[0][9]  # mg/g
-            ro1[2] = rows[1][9]  # mg/g
-            ro1[3] = rows[2][9]  # mg/g
+            ro1[2] = rows[2][9]  # mg/g
+            ro1[3] = rows[4][9]  # mg/g
 
             ro2 = [0] * 4
-            ro2[0] = rows[3][1]  # Dia
-            ro2[1] = rows[3][9]  # mg/g
-            ro2[2] = rows[4][9]  # mg/g
+            ro2[0] = rows[1][1]  # Dia
+            ro2[1] = rows[1][9]  # mg/g
+            ro2[2] = rows[3][9]  # mg/g
             ro2[3] = rows[5][9]  # mg/g
             output.append(ro1)
             output.append(ro2)
