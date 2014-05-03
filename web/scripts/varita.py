@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import csv
 import locale
@@ -18,21 +16,24 @@ HEADERS = [
     'A1-B',
     'A2-B',
     'A (promedio)',
-    'Prot (en reaccion)',
-    'mg prot / gr muestra',
+    'Proteinas (en reaccion)',
+    'mg protreinas / g muestra',
 ]
 
-BLANCO = Decimal('0.063')
-VOL_MUESTRA = Decimal('0.05')  # Muestra PAL a 2 grados
-VOL_MUESTRA = Decimal('0.10')  # Muestra PPO a 2 grados
+# BLANCO = Decimal('0.063')
+# VOL_MUESTRA = Decimal('0.05')  # Muestra PAL a 2 grados
+# VOL_MUESTRA = Decimal('0.10')  # Muestra PPO a 2 grados
+
 
 def process(name, finput, foutput, blanco, vol_muestra, prec=5):
     getcontext().prec = prec
 
     with open(finput, 'r') as fh:
         csvreader = csv.reader(fh)
+        # omitir primera linea
+        csvreader.next()
 
-        output = []  # + [HEADERS]
+        output = [] + [HEADERS]
         for row in csvreader:
             row = list(map(lambda x: string.replace(x, ',', '.'), row))
 
@@ -52,4 +53,3 @@ def process(name, finput, foutput, blanco, vol_muestra, prec=5):
     with open(foutput, 'w') as fh:
         csvwriter = csv.writer(fh)
         csvwriter.writerows(output)
-

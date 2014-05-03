@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, send_from_directory
 from werkzeug.utils import secure_filename
 
 from scripts.varita import process
-
+from scripts.mg_g_muestra import invert_table
 
 app = Flask(__name__)
 
@@ -40,12 +40,19 @@ def home():
                 filename)
             f.save(finput)
 
-        process('Name Goes Here', finput, foutput,
+        process(form['name'], finput, foutput,
                 Decimal(form['blanco']),
                 Decimal(form['vol_muestra']),
                 int(form['prec']))
 
-        return render_template('done.html', filename=filename)
+        foutput2 = os.path.join(
+            app.config['RESULT_FOLDER'],
+            'mg_' + filename)
+
+        invert_table(form['name'], foutput, foutput2, int(form['prec']))
+
+        return render_template(
+            'done.html', datos=filename, invertida='mg_'+filename)
 
 
 @app.route('/result/<filename>')

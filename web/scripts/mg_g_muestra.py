@@ -6,20 +6,32 @@ import string
 # locale.setlocale(locale.LC_ALL, 'es_ES.UTF-8')
 
 from decimal import Decimal, getcontext
-getcontext().prec = 5
 
 HEADERS = [
-    '',
-    'ED',
-    'CM',
-    'CC',
+    [
+        '',
+        'ED',
+        'CM',
+        'CC',
+    ],
+    [
+        'Dia',
+        'mg promedio / g',
+        'mg promedio / g',
+        'mg promedio / g',
+    ]
 ]
 
-if __name__ == '__main__':
-    with open('proteinas_analizado.csv', 'r') as fh:
-        csvreader = csv.reader(fh)
 
-        output = []  # + [HEADERS]
+def invert_table(name, finput, foutput, prec=5):
+    getcontext().prec = prec
+
+    with open(finput, 'r') as fh:
+        csvreader = csv.reader(fh)
+        # omitir primera linea
+        csvreader.next()
+
+        output = [['NOMBRE', name, '', '']] + HEADERS
         reader_list = list(csvreader)
 
         list_of_slices = zip(*(iter(reader_list),) * 6)
@@ -42,8 +54,6 @@ if __name__ == '__main__':
             output.append(ro1)
             output.append(ro2)
 
-    with open('proteinas_analizado_invertido.csv', 'w') as fh:
+    with open(foutput, 'w') as fh:
         csvwriter = csv.writer(fh)
         csvwriter.writerows(output)
-
-    print 'Terminado!'

@@ -2,5 +2,19 @@
 
 {% block content %}
 <p class="lead">Gracias por subir los datos necesarios para procesar.</p>
-<p class="lead">Los resultados están disponibles para descargar <a href="/result/{{ filename }}">aqui</a>.</p>
+<p class="lead">Los resultados están disponibles para descargar:</p>
+
+<a href="/result/{{ datos }}">
+  <button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star"></span> Datos procesados
+  </button>
+</a>
+
+<br>
+
+<a href="/result/{{ invertida }}">
+  <button style="margin-top: 15px;" type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star"></span> Tabla invertida
+  </button>
+</a>
 {% endblock %}
