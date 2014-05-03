@@ -33,7 +33,7 @@ def process(name, finput, foutput, blanco, vol_muestra, prec=5):
         # omitir primera linea
         csvreader.next()
 
-        output = [] + [HEADERS]
+        output = [['NOMBRE', name, '', '', '', '', '', '', '', '']] + [HEADERS]
         for row in csvreader:
             row = list(map(lambda x: string.replace(x, ',', '.'), row))
 
