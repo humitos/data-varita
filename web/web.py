@@ -14,7 +14,7 @@ ALLOWED_EXTENSIONS = ['csv']
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['RESULT_FOLDER'] = UPLOAD_FOLDER
 
-app.debug = True
+# app.debug = True
 
 
 def allowed_file(filename):
